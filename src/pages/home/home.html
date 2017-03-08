@@ -21,42 +21,87 @@
 
   <ion-grid *ngIf="jogo_iniciado">
     <ion-row>
-      <ion-col>
+      <ion-col text-center>
         <h4 class="titulo-player">Jogador</h4>
         <img *ngFor="let carta of cartas_jogador" class="card" [src]="carta?.img"/>
+        <img *ngFor="let x of cartas_a_serem_viradas_jogador" class="card transparente" src="/assets/Red_Back.svg"/>
       </ion-col>
     </ion-row>
-    <br/>
-    <ion-row>
-      <ion-col>
-        <h4 class="titulo-player">Mesa</h4>
-        <div  *ngIf="!mostrar_cartas">
-          <img *ngFor="let carta of cartas_mesa" class="card" src="/assets/Red_Back.svg"/>
-        </div>
-        <div *ngIf="mostrar_cartas">
-          <img *ngFor="let carta of cartas_mesa" class="card" [src]="carta?.img"/>
-        </div>
-      </ion-col>
-    </ion-row>
-    <br/>
-    <br/>
-    <br/>
     <br/>
     <ion-row>
       <ion-col text-center>
-        <h5 class="titulo-player">Cartas Restantes</h5>
+        <h4 class="titulo-player">Banca</h4>
+        <img *ngFor="let carta of cartas_banca" class="card" [src]="carta.visivel == true ? carta?.img : '/assets/Red_Back.svg' "/>
+        <img *ngFor="let x of cartas_a_serem_viradas_banca" class="card transparente" src="/assets/Red_Back.svg"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="!jogo_encerrado">
+      <ion-col text-center>
+        <br/>
+        <br/>
+        <h5 class="titulo-player">Cartas Restantes no Baralho</h5>
         <div class="baralho">
           <span>{{ baralho.length }}</span>
           <img class="card" src="/assets/Red_Back.svg"/>
         </div>
       </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="jogo_encerrado">
+      <ion-col text-center>
+        <br/>
+        <br/>
+        <h5 class="titulo-player">Placar Final</h5>
+        <ion-grid class="placar_final">
+          <ion-row>
+            <ion-col text-center>
+              <h5 class="titulo-player">Jogador</h5>
+            </ion-col>
+            <ion-col text-center>
+              <h5 class="titulo-player">Banca</h5>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col text-center>
+              <ion-badge color="danger">{{ valor_jogador }}</ion-badge>
+              <br/>
+              <br/>
+              <img src="/assets/trofeu.svg" class="trofeu" *ngIf="ganhador=='Jogador'" />
+            </ion-col>
+            <ion-col text-center>
+              <ion-badge color="danger">{{ valor_banca }}</ion-badge>
+              <br/>
+              <br/>
+              <img src="/assets/trofeu.svg" class="trofeu" *ngIf="ganhador=='Banca'" />
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col text-center>
+              <br/>
+              <br/>
+              <button ion-button round large block (click)="reiniciar_jogo()">
+                <ion-icon name="game-controller-b"></ion-icon>
+                &nbsp;
+                Reiniciar Jogo!
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <ion-row *ngIf="vez == 'Jogador' && !jogo_encerrado">
       <ion-col text-center>
         <h5 class="titulo-player">Ações Disponíveis</h5>
-        <button class="btn-card" ion-button clear (click)="puxar_carta('Jogador')">
+        <button class="btn-card" ion-button clear (click)="puxar_carta('Jogador'); passar_vez_para('Banca');">
           <img class="card" src="/assets/15538-illustration-of-a-card-deck-back-pv.png"/>
         </button>
-        <h5 class="titulo-player">ou</h5>
-        <button class="btn-card" ion-button clear (click)="mostrar_cartas=true">
+        <button class="btn-card" ion-button clear (click)="encerrar_jogo()">
           <img class="card" src="/assets/playingcards.png"/>
         </button>
       </ion-col>

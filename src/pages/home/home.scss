@@ -17,6 +17,10 @@ page-home {
         margin-right: 5px;
     }
 
+    .transparente {
+        opacity: 0.3;
+    }
+
     .btn-card, .btn-card .card {
         height: 80px;
     }
@@ -26,23 +30,39 @@ page-home {
     }
     
     .baralho {
-        width: 93px;
-        height: 130px;
+        width: 71px;
+        height: 100px;
         margin: 0 auto;
         position: relative;
         text-align: center;
+
+        .card {
+            height: 100px;
+        }
 
         span {
             position: absolute;
             color: #fff;
             font-size: 22px;
-            top: 25px;
-            left: 25px;
+            top: 30px;
+            left: 8px;
             background: darkred;
             border-radius: 100%;
             padding: 7px;
-            width: 39px;
-            height: 39px;
+            width: 55px;
+            height: 40px;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+
+    .placar_final {
+        ion-badge {
+            font-size: 36px;
+        }
+
+        .trofeu {
+            height: 48px;
         }
     }
 }
