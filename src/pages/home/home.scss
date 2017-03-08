@@ -1,0 +1,48 @@
+page-home {
+    ion-content {
+        background: url('https://mxg.cdnbf.net/mexchangeblackjack/turbo/assets/gameView/tableBackground.png?v1.26-245') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .logo-menor {
+        width: 100px;
+        height: 100px;
+    }
+
+    .card {
+        height: 90px;
+        margin-right: 5px;
+    }
+
+    .btn-card, .btn-card .card {
+        height: 80px;
+    }
+
+    .titulo-player {
+        color: #fff;
+    }
+    
+    .baralho {
+        width: 93px;
+        height: 130px;
+        margin: 0 auto;
+        position: relative;
+        text-align: center;
+
+        span {
+            position: absolute;
+            color: #fff;
+            font-size: 22px;
+            top: 25px;
+            left: 25px;
+            background: darkred;
+            border-radius: 100%;
+            padding: 7px;
+            width: 39px;
+            height: 39px;
+        }
+    }
+}

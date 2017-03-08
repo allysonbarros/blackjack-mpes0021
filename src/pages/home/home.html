@@ -1,0 +1,65 @@
+<ion-content padding no-scroll>
+  <ion-grid *ngIf="!jogo_iniciado">
+    <ion-row>
+      <ion-col text-center>
+        <img src="http://rs698.pbsrc.com/albums/vv343/conhocway/a5gjuf.png~c200" alt="Blackjack">
+      </ion-col>
+    </ion-row>
+    <br/>
+    <br/>
+    <br/>
+    <ion-row>
+      <ion-col>
+        <button ion-button round large block (click)="iniciar_jogo()">
+          <ion-icon name="game-controller-b"></ion-icon>
+          &nbsp;
+          Iniciar Jogo!
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="jogo_iniciado">
+    <ion-row>
+      <ion-col>
+        <h4 class="titulo-player">Jogador</h4>
+        <img *ngFor="let carta of cartas_jogador" class="card" [src]="carta?.img"/>
+      </ion-col>
+    </ion-row>
+    <br/>
+    <ion-row>
+      <ion-col>
+        <h4 class="titulo-player">Mesa</h4>
+        <div  *ngIf="!mostrar_cartas">
+          <img *ngFor="let carta of cartas_mesa" class="card" src="/assets/Red_Back.svg"/>
+        </div>
+        <div *ngIf="mostrar_cartas">
+          <img *ngFor="let carta of cartas_mesa" class="card" [src]="carta?.img"/>
+        </div>
+      </ion-col>
+    </ion-row>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <ion-row>
+      <ion-col text-center>
+        <h5 class="titulo-player">Cartas Restantes</h5>
+        <div class="baralho">
+          <span>{{ baralho.length }}</span>
+          <img class="card" src="/assets/Red_Back.svg"/>
+        </div>
+      </ion-col>
+      <ion-col text-center>
+        <h5 class="titulo-player">Ações Disponíveis</h5>
+        <button class="btn-card" ion-button clear (click)="puxar_carta('Jogador')">
+          <img class="card" src="/assets/15538-illustration-of-a-card-deck-back-pv.png"/>
+        </button>
+        <h5 class="titulo-player">ou</h5>
+        <button class="btn-card" ion-button clear (click)="mostrar_cartas=true">
+          <img class="card" src="/assets/playingcards.png"/>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
